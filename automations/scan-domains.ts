@@ -1,7 +1,7 @@
 import Domain from "../models/domain";
 import { getVirusTotalData, getWhoIsData } from "../util/functions";
 
-const scanDomain = async (domain: string) => {
+export const scanDomain = async (domain: string) => {
   console.log(`Getting data for domain ${domain}...`);
   const scanDate = new Date();
   const [whoIs, virusTotal] = await Promise.all([
@@ -15,7 +15,7 @@ const scanDomain = async (domain: string) => {
     result: { whoIs, virusTotal }
   });
   await item.save();
-  console.log(`Updated scan result for domain ${domain} on ${scanDate}`);
+  console.log(`Saved scan result for domain ${domain} on ${scanDate}`);
 };
 
 export default async function scanDomains() {

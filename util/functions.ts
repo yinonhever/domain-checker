@@ -1,5 +1,5 @@
 import { whoIsAPI, virusTotalAPI } from "./axios";
-import { VirusTotalData, WhoIsData } from "./types";
+import { VirusTotalApiResponse, VirusTotalData, WhoIsData } from "./types";
 import cloneDeep from "clone-deep";
 
 export const getWhoIsData = async (domain: string) => {
@@ -11,7 +11,7 @@ export const getWhoIsData = async (domain: string) => {
   } catch (error: any) {
     console.log(
       `Failed to get WhoIs data for domain ${domain}`,
-      error.response?.data || error.message
+      error.response?.data || error
     );
     return null;
   }
@@ -19,14 +19,15 @@ export const getWhoIsData = async (domain: string) => {
 
 export const getVirusTotalData = async (domain: string) => {
   try {
-    const { data } = await virusTotalAPI.get<VirusTotalData>(
-      `/domains/${domain}`
+    const { data } = await virusTotalAPI.get<VirusTotalApiResponse>(
+      `/domains/${domain}`,
+      { headers: { "x-apikey": process.env.VIRUSTOTAL_API_KEY } }
     );
-    return convertVirusTotalData(data);
+    return convertVirusTotalData(data.data.attributes);
   } catch (error: any) {
     console.log(
       `Failed to get VirusTotal data for domain ${domain}`,
-      error.response?.data || error.message
+      error.response?.data || error
     );
     return null;
   }

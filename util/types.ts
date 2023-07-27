@@ -102,14 +102,7 @@ export interface DnsRecord {
 
 export interface HttpsCertificate {
   size: number;
-  public_key: {
-    rsa: {
-      key_size: number;
-      modulus: string;
-      exponent: string;
-    };
-    algorithm: string;
-  };
+  public_key: object;
   thumbprint_sha256: string;
   cert_signature: {
     signature: string;
@@ -120,31 +113,16 @@ export interface HttpsCertificate {
     not_before: Date | string;
   };
   version: string;
-  extensions: {
-    certificate_policies: string[];
-    extended_key_usage: string[];
-    authority_key_identifier: {
-      keyid: string;
-    };
-    subject_alternative_name: string[];
-    subject_key_identifier: string;
-    key_usage: string[];
-    "1.3.6.1.4.1.11129.2.4.2": string;
-    CA: boolean;
-    ca_information_access: {
-      "CA Issuers": string;
-      OCSP: string;
-    };
-  };
+  extensions: object;
   thumbprint: string;
   serial_number: string;
-  issuer: {
-    C: string;
-    CN: string;
-    O: string;
-  };
-  subject: {
-    CN: string;
+  issuer: Object;
+  subject: object;
+}
+
+export interface VirusTotalApiResponse {
+  data: {
+    attributes: VirusTotalData;
   };
 }
 
