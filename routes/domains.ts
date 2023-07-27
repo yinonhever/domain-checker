@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { addDomain, getDomainCurrentInfo } from "../controllers/domains";
-import trackRequest from "../middleware/track";
+import trackRequest from "../middleware/track-request";
 
 const router = Router();
 

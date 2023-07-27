@@ -16,6 +16,10 @@ app.use(cors());
 
 app.use("/domains", domainRoutes);
 
+/**
+ * Connecting to the MongoDB database, starting the web server and scheduling
+ * the automations.
+ */
 const startServer = async () => {
   const PORT = process.env.PORT || 5000;
   await mongoose.connect(process.env.MONGODB_URI as string);
@@ -23,6 +27,10 @@ const startServer = async () => {
   runAutomations();
 };
 
+/**
+ * Scheduling the execution of all the configured automations, each with its
+ * unique interval.
+ */
 const runAutomations = () => {
   for (const { interval, action } of automations) {
     cron.schedule(interval, action);

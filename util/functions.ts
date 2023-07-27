@@ -1,7 +1,11 @@
 import { whoIsAPI, virusTotalAPI } from "./axios";
-import { VirusTotalApiResponse, VirusTotalData, WhoIsData } from "./types";
+import type { VirusTotalApiResponse, VirusTotalData, WhoIsData } from "./types";
 import cloneDeep from "clone-deep";
 
+/**
+ * Receives a domain name and returns WhoIs data about the domain, which is
+ * fetched from the third-party IP2Location.io REST API.
+ */
 export const getWhoIsData = async (domain: string) => {
   try {
     const { data } = await whoIsAPI.get<WhoIsData>("/", {
@@ -17,6 +21,10 @@ export const getWhoIsData = async (domain: string) => {
   }
 };
 
+/**
+ * Receives a domain name and returns security analysis about the domain,
+ * which is fetched from the third-party VirusTotal REST API.
+ */
 export const getVirusTotalData = async (domain: string) => {
   try {
     const { data } = await virusTotalAPI.get<VirusTotalApiResponse>(
@@ -33,6 +41,10 @@ export const getVirusTotalData = async (domain: string) => {
   }
 };
 
+/**
+ * Receives data returned from the WhoIs API and returns a converted version of it,
+ * transforming string into Date where needed.
+ */
 const convertWhoIsData = (data: WhoIsData) => {
   data = cloneDeep(data);
   data.create_date = new Date(data.create_date);
@@ -41,6 +53,10 @@ const convertWhoIsData = (data: WhoIsData) => {
   return data;
 };
 
+/**
+ * Receives data returned from the VirusTotal API and returns a converted version of it,
+ * transforming string/number into Date where needed.
+ */
 const convertVirusTotalData = (data: VirusTotalData) => {
   data = cloneDeep(data);
   const {

@@ -2,6 +2,11 @@ import type { RequestHandler } from "express";
 import type { DomainRequestData, DomainScanResult } from "../util/types";
 import Domain from "../models/domain";
 
+/**
+ * Controller for the POST /domains API route, taking a domain name from the request body
+ * and adding the domain to the database for future analysis. Returns an error if the domain
+ * already exists in the database.
+ */
 export const addDomain: RequestHandler = async (req, res) => {
   try {
     const { name }: DomainRequestData = req.body;
@@ -25,6 +30,11 @@ export const addDomain: RequestHandler = async (req, res) => {
   }
 };
 
+/**
+ * Controller for the GET /domains/:name/current API route, taking the domain name from
+ * the request's params and retrieving the latest data that's been collected for this domain
+ * from the database. If domain doesn't exist yet, it adds the domain for future scanning.
+ */
 export const getDomainCurrentInfo: RequestHandler = async (req, res) => {
   try {
     const { name }: DomainRequestData = req.params;

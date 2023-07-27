@@ -1,6 +1,10 @@
 import Domain from "../models/domain";
 import { getVirusTotalData, getWhoIsData } from "../util/functions";
 
+/**
+ * Receives a domain name, fetches security information about the domain
+ * and saves the data as a new scan in the database.
+ */
 export const scanDomain = async (domain: string) => {
   console.log(`Getting data for domain ${domain}...`);
   const scanDate = new Date();
@@ -18,6 +22,10 @@ export const scanDomain = async (domain: string) => {
   console.log(`Saved scan result for domain ${domain} on ${scanDate}`);
 };
 
+/**
+ * Runs over all the domains stored in the database and adds a new scan
+ * for each of them.
+ */
 export default async function scanDomains() {
   console.log("Started scan of all domains...", new Date());
   const domains = await Domain.find();

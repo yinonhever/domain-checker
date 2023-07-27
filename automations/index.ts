@@ -1,9 +1,11 @@
-import { Automation } from "../util/types";
+import type { Automation } from "../util/types";
 import scanDomains from "./scan-domains";
 
+/**
+ * Array that contains all the automations that would be scheduled.
+ */
 const automations: Automation[] = [
   {
-    // Schedule the domain scanning to run at the 1st of every month at 00:00
     interval: "0 0 1 * *",
     action: scanDomains
   }
