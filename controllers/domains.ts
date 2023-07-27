@@ -36,7 +36,7 @@ export const getDomainCurrentInfo: RequestHandler = async (req, res) => {
       const newItem = new Domain({ name });
       const createdItem = await newItem.save();
       return res.status(201).json({
-        msg: "This domain wasn't found on our system. Added domain to list for analysis",
+        msg: "Added domain to list for analysis. Please check back later",
         name,
         createdItem
       });
