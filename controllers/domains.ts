@@ -1,6 +1,7 @@
 import type { RequestHandler } from "express";
 import type { DomainRequestData, DomainScanResult } from "../util/types";
 import Domain from "../models/domain";
+import { isValidDomain } from "../util/functions";
 
 /**
  * Controller for the POST /domains API route, taking a domain name from the request body
@@ -12,6 +13,9 @@ export const addDomain: RequestHandler = async (req, res) => {
     const { name }: DomainRequestData = req.body;
     if (!name?.trim()) {
       return res.status(400).json({ msg: "No domain name was provided" });
+    }
+    if (!isValidDomain(name)) {
+      return res.status(400).json({ msg: "Invalid domain name" });
     }
     const existingItem = await Domain.findOne({ name }).select("name");
     if (existingItem) {
@@ -40,6 +44,9 @@ export const getDomainCurrentInfo: RequestHandler = async (req, res) => {
     const { name }: DomainRequestData = req.params;
     if (!name?.trim()) {
       return res.status(400).json({ msg: "No domain name was provided" });
+    }
+    if (!isValidDomain(name)) {
+      return res.status(400).json({ msg: "Invalid domain name" });
     }
     const existingItem = await Domain.findOne({ name });
     if (!existingItem) {

@@ -3,6 +3,13 @@ import type { VirusTotalApiResponse, VirusTotalData, WhoIsData } from "./types";
 import cloneDeep from "clone-deep";
 
 /**
+ * Receives a string and checks whether it's a valid domain name (not URL) 
+ * using Regex.
+ */
+export const isValidDomain = (domain: string) =>
+  /^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,6}$/i.test(domain);
+
+/**
  * Receives a domain name and returns WhoIs data about the domain, which is
  * fetched from the third-party IP2Location.io REST API.
  */
