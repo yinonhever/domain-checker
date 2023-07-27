@@ -9,17 +9,19 @@ export interface DomainRequestData {
   name?: string;
 }
 
-export interface WhoIsContactDetails {
-  name: string;
-  organization: string;
-  street_address: string;
-  city: string;
-  region: string;
-  zip_code: string;
-  country: string;
-  phone: string;
-  fax: string;
-  email: string;
+export interface DomainScanResult {
+  whoIs: WhoIsData | null;
+  virusTotal: VirusTotalData | null;
+}
+
+export interface DomainScan {
+  date: Date;
+  result: DomainScanResult;
+}
+
+export interface DomainCurrentInfoResponse {
+  currentResult: DomainScanResult;
+  lastScanDate: Date;
 }
 
 export interface WhoIsData {
@@ -41,6 +43,52 @@ export interface WhoIsData {
   tech: WhoIsContactDetails;
   billing: WhoIsContactDetails;
   nameservers: string[];
+}
+
+export interface VirusTotalData {
+  last_dns_records: DnsRecord[];
+  last_dns_records_date: Date | number;
+  jarm: string;
+  popularity_ranks: {
+    [site: string]: {
+      timestamp: Date | number;
+      rank: number;
+    };
+  };
+  last_analysis_stats: {
+    harmless: number;
+    malicious: number;
+    suspicious: number;
+    undetected: number;
+    timeout: number;
+  };
+  last_analysis_results: {
+    [engine: string]: {
+      category: string;
+      result: string;
+      method: string;
+      engine_name: string;
+    };
+  };
+  last_https_certificate: HttpsCertificate;
+  last_https_certificate_date: Date | number;
+  categories: {
+    [engine: string]: string;
+  };
+  reputation: number;
+}
+
+export interface WhoIsContactDetails {
+  name: string;
+  organization: string;
+  street_address: string;
+  city: string;
+  region: string;
+  zip_code: string;
+  country: string;
+  phone: string;
+  fax: string;
+  email: string;
 }
 
 export interface DnsRecord {
@@ -105,51 +153,7 @@ export interface HttpsCertificate {
   };
 }
 
-export interface VirusTotalData {
-  last_dns_records: DnsRecord[];
-  last_dns_records_date: Date | number;
-  jarm: string;
-  popularity_ranks: {
-    [site: string]: {
-      timestamp: Date | number;
-      rank: number;
-    };
-  };
-  last_analysis_stats: {
-    harmless: number;
-    malicious: number;
-    suspicious: number;
-    undetected: number;
-    timeout: number;
-  };
-  last_analysis_results: {
-    [engine: string]: {
-      category: string;
-      result: string;
-      method: string;
-      engine_name: string;
-    };
-  };
-  last_https_certificate: HttpsCertificate;
-  last_https_certificate_date: Date | number;
-  categories: {
-    [engine: string]: string;
-  };
-  reputation: number;
-}
-
-export interface DomainScanResult {
-  whoIs: WhoIsData | null;
-  virusTotal: VirusTotalData | null;
-}
-
-export interface DomainScan {
-  date: Date;
-  isSuccess: boolean;
-  result: DomainScanResult;
-}
-
-export interface DomainCurrentInfoResponse {
-  currentResult: DomainScanResult;
-  lastScanDate: Date;
+export interface Automation {
+  interval: string;
+  action: (...args: any) => any;
 }

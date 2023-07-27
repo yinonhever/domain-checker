@@ -5,5 +5,6 @@ export const whoIsAPI = axios.create({
 });
 
 export const virusTotalAPI = axios.create({
-  baseURL: "https://www.virustotal.com/api/v3"
+  baseURL: "https://www.virustotal.com/api/v3",
+  headers: { "x-apikey": process.env.VIRUSTOTAL_API_KEY }
 });

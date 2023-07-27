@@ -161,10 +161,6 @@ const scanSchema = new Schema<DomainScan>({
     type: Date,
     required: true
   },
-  isSuccess: {
-    type: Boolean,
-    required: true
-  },
   result: {
     whoIs: {
       type: whoIsSchema,

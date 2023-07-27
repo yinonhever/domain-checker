@@ -38,9 +38,9 @@ export const getDomainCurrentInfo: RequestHandler = async (req, res) => {
         createdItem
       });
     }
-    const [lastSuccessfulScan] = existingItem.scans
-      .filter(scan => scan.isSuccess)
-      .sort((a, b) => +b.date - +a.date);
+    const [lastSuccessfulScan] = existingItem.scans.sort(
+      (a, b) => +b.date - +a.date
+    );
     if (!lastSuccessfulScan) {
       return res.json({
         msg: "No data was collected for this domain yet. Please check back later",
