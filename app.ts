@@ -24,14 +24,14 @@ const startServer = async () => {
   const PORT = process.env.PORT || 5000;
   await mongoose.connect(process.env.MONGODB_URI as string);
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-  runAutomations();
+  scheduleAutomations();
 };
 
 /**
  * Scheduling the execution of all the configured automations, each with its
  * unique interval.
  */
-const runAutomations = () => {
+const scheduleAutomations = () => {
   for (const { interval, action } of automations) {
     cron.schedule(interval, action);
   }
