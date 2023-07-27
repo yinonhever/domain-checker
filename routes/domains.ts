@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { addDomain, getDomainData } from "../controllers/domains";
+import { addDomain, getDomainCurrentInfo } from "../controllers/domains";
 
 const router = Router();
 
-router.get("/", getDomainData);
 router.post("/", addDomain);
+router.get("/:name/current", getDomainCurrentInfo);
 
 export default router;
