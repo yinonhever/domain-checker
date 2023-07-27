@@ -2,7 +2,7 @@ import { RequestHandler } from "express";
 import { getClientIp } from "request-ip";
 import RequestLog from "../models/request-log";
 
-const trackRequest: RequestHandler = async (req, res, next) => {
+const trackRequest: RequestHandler = (req, res, next) => {
   const { method, params, body, query, originalUrl } = req;
   const domain = params.name || body.name;
   const ip = getClientIp(req);
