@@ -19,11 +19,6 @@ export interface DomainScan {
   result: DomainScanResult;
 }
 
-export interface DomainCurrentInfoResponse {
-  currentResult: DomainScanResult;
-  lastScanDate: Date;
-}
-
 export interface WhoIsData {
   domain: string;
   domain_id: string;

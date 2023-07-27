@@ -1,8 +1,5 @@
 import type { RequestHandler } from "express";
-import type {
-  DomainCurrentInfoResponse,
-  DomainRequestData
-} from "../util/types";
+import type { DomainRequestData, DomainScanResult } from "../util/types";
 import Domain from "../models/domain";
 
 export const addDomain: RequestHandler = async (req, res) => {
@@ -10,6 +7,12 @@ export const addDomain: RequestHandler = async (req, res) => {
     const { name }: DomainRequestData = req.body;
     if (!name?.trim()) {
       return res.status(400).json({ msg: "No domain name was provided" });
+    }
+    const existingItem = await Domain.findOne({ name }).select("name");
+    if (existingItem) {
+      return res
+        .status(400)
+        .json({ msg: "This domain already exists on our system", name });
     }
     const item = new Domain({ name });
     const createdItem = await item.save();
@@ -38,19 +41,18 @@ export const getDomainCurrentInfo: RequestHandler = async (req, res) => {
         createdItem
       });
     }
-    const [lastSuccessfulScan] = existingItem.scans.sort(
-      (a, b) => +b.date - +a.date
-    );
-    if (!lastSuccessfulScan) {
+    const { scans } = existingItem;
+    scans.sort((a, b) => +b.date - +a.date);
+    const whoIs = scans.find(scan => scan.result.whoIs)?.result.whoIs || null;
+    const virusTotal =
+      scans.find(scan => scan.result.virusTotal)?.result.virusTotal || null;
+    if (!whoIs && !virusTotal) {
       return res.json({
         msg: "No data was collected for this domain yet. Please check back later",
         name
       });
     }
-    const data: DomainCurrentInfoResponse = {
-      currentResult: lastSuccessfulScan.result,
-      lastScanDate: lastSuccessfulScan.date
-    };
+    const data: DomainScanResult = { whoIs, virusTotal };
     res.json(data);
   } catch (error: any) {
     console.log(error);
