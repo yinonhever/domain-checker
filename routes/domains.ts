@@ -1,9 +1,10 @@
 import { Router } from "express";
 import { addDomain, getDomainCurrentInfo } from "../controllers/domains";
+import trackRequest from "../middleware/track";
 
 const router = Router();
 
-router.post("/", addDomain);
-router.get("/:name/current", getDomainCurrentInfo);
+router.post("/", trackRequest, addDomain);
+router.get("/:name/current", trackRequest, getDomainCurrentInfo);
 
 export default router;
