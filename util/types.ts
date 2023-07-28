@@ -1,9 +1,8 @@
-export type DataItem<T = unknown, S = unknown> = T &
-  S & {
-    _id: string;
-    createdAt: Date | string;
-    updatedAt: Date | string;
-  };
+export type DataItem<T = unknown> = T & {
+  _id: string;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+};
 
 export interface DomainRequestData {
   name?: string;

@@ -1,19 +1,10 @@
-import { Schema, model, models, Model } from "mongoose";
+import { Schema } from "mongoose";
 import type {
   WhoIsContactDetails,
-  DataItem,
-  DomainScan,
   VirusTotalData,
   WhoIsData,
   HttpsCertificate
-} from "../util/types";
-
-interface IDomain {
-  name: string;
-  scans: DomainScan[];
-}
-
-export type DomainData = DataItem<IDomain, { lastScanDate?: Date }>;
+} from "../../util/types";
 
 const contactDetailsSchema = new Schema<WhoIsContactDetails>(
   {
@@ -31,7 +22,7 @@ const contactDetailsSchema = new Schema<WhoIsContactDetails>(
   { _id: false }
 );
 
-const whoIsSchema = new Schema<WhoIsData>(
+export const whoIsSchema = new Schema<WhoIsData>(
   {
     domain: String,
     domain_id: String,
@@ -101,7 +92,7 @@ const httpsCertificateSchema = new Schema<HttpsCertificate>(
   { _id: false }
 );
 
-const virusTotalSchema = new Schema<VirusTotalData>(
+export const virusTotalSchema = new Schema<VirusTotalData>(
   {
     last_dns_records: [dnsRecordSchema],
     last_dns_records_date: Date,
@@ -122,38 +113,3 @@ const virusTotalSchema = new Schema<VirusTotalData>(
   },
   { _id: false }
 );
-
-const scanSchema = new Schema<DomainScan>({
-  date: {
-    type: Date,
-    required: true
-  },
-  result: {
-    whoIs: {
-      type: whoIsSchema,
-      default: null
-    },
-    virusTotal: {
-      type: virusTotalSchema,
-      default: null
-    }
-  }
-});
-
-const domainSchema = new Schema<IDomain>(
-  {
-    name: {
-      type: String,
-      required: true,
-      unique: true,
-      immutable: true
-    },
-    scans: [scanSchema]
-  },
-  { timestamps: true }
-);
-
-const Domain: Model<IDomain> =
-  models.Domain || model<IDomain>("Domain", domainSchema);
-
-export default Domain;

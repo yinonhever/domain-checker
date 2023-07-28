@@ -10,7 +10,7 @@ interface IRequestLog {
   ip: string | null;
 }
 
-const requestScehma = new Schema<IRequestLog>(
+const requestLogSchema = new Schema<IRequestLog>(
   {
     path: {
       type: String,
@@ -33,6 +33,6 @@ const requestScehma = new Schema<IRequestLog>(
 );
 
 const RequestLog: Model<IRequestLog> =
-  models.Log || model("RequestLog", requestScehma);
+  models.Log || model("RequestLog", requestLogSchema);
 
 export default RequestLog;
