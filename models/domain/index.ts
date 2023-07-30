@@ -7,8 +7,6 @@ interface IDomain {
   scans: DomainScan[];
 }
 
-export type DomainData = DataItem<IDomain>;
-
 const domainSchema = new Schema<IDomain>(
   {
     name: {

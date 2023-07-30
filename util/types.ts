@@ -127,5 +127,5 @@ export interface VirusTotalApiResponse {
 
 export interface Automation {
   interval: string;
-  action: (...args: any) => any;
+  action: (...args: any[]) => any;
 }
