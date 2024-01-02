@@ -5,7 +5,7 @@ phases:
     commands:
       - git config --global user.name "Yinon Hever"
       - git config --global user.email "yinonehever@gmail.com"
-      - env
+      - cd $CODEBUILD_SRC_DIR
       - git status
       - git remote -v
       - git branch -a
