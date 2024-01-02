@@ -5,19 +5,14 @@ phases:
     commands:
       - git config --global user.name "Yinon Hever"
       - git config --global user.email "yinonehever@gmail.com"
-      - pwd
-      - cd $CODEBUILD_SRC_DIR
-      - pwd
-      - ls
       - git init
-      - git status
-      - git remote -v
-      - git branch -a
       - git remote add origin https://github.com/yinonhever/domain-checker
       - git fetch origin main
       - git reset --hard origin/main
       - git pull origin main
       - node --version
+      - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+      - nvm --version
       - nvm install 18
       - nvm use 18
       - node --version
