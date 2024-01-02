@@ -5,6 +5,9 @@ phases:
     commands:
       - git config --global user.name "Yinon Hever"
       - git config --global user.email "yinonehever@gmail.com"
+      - git status
+      - git remote -v
+      - git branch -a
       - git pull origin main
   build:
     commands:
