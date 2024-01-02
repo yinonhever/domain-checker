@@ -17,8 +17,11 @@ phases:
       - git fetch origin main
       - git reset --hard origin/main
       - git pull origin main
+      - node --version
+      - nvm install 18
+      - nvm use 18
+      - node --version
   build:
     commands:
       - npm install
-      - node --version
       - npm run build
