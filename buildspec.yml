@@ -8,6 +8,7 @@ phases:
       - pwd
       - cd $CODEBUILD_SRC_DIR
       - pwd
+      - ls
       - git status
       - git remote -v
       - git branch -a
