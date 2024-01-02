@@ -3,9 +3,10 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo "Pre-build phase"
+      - git config --global user.name "Yinon Hever"
+      - git config --global user.email "yinonehever@gmail.com"
+      - git pull origin main
   build:
     commands:
-      - git pull origin main
       - npm install
       - npm run build
