@@ -8,6 +8,9 @@
     "start": "node dist/app.js",
     "dev": "npx tsc && concurrently \"npx tsc --watch\" \"nodemon -q dist/app.js\""
   },
+  "engines": {
+    "node": ">=18"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
