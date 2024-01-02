@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: /dist
+    destination: /var/www/domain-checker
+hooks:
+  AfterInstall:
+    - location: scripts/after-install.sh
+      timeout: 300
+      runas: ec2-user

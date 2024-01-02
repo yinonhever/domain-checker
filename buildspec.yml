@@ -1,0 +1,11 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Pre-build phase"
+  build:
+    commands:
+      - git pull
+      - npm install
+      - npm run build
