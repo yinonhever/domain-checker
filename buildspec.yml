@@ -13,6 +13,7 @@ phases:
       - git status
       - git remote -v
       - git branch -a
+      - git remote add origin https://github.com/yinonhever/domain-checker
       - git pull origin main
   build:
     commands:
