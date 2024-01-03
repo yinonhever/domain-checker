@@ -6,8 +6,6 @@ phases:
       nodejs: 18.x
   pre_build:
     commands:
-      - git config --global user.name "Yinon Hever"
-      - git config --global user.email "yinonehever@gmail.com"
       - git init
       - git remote add origin https://github.com/yinonhever/domain-checker
       - git fetch origin main
