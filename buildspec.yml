@@ -10,9 +10,13 @@ phases:
       - git remote add origin https://github.com/yinonhever/domain-checker
       - git fetch origin main
       - git reset --hard origin/main
-      - git pull origin main
-      - node --version
   build:
     commands:
       - npm install
       - npm run build
+  artifacts:
+    files:
+      - "**/*"
+    base-directory: /
+    name: domain-checker-backend
+    discard-paths: no
