@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo -u ec2-user cd /var/www/domain-checker
+cd /var/www/domain-checker
 sudo -u ec2-user git pull
 sudo -u ec2-user npm install
 sudo -u ec2-user npm run build 
