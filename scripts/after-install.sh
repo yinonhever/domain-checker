@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd /var/www/domain-checker
-git pull
-npm install
-npm run build 
-pm2 restart domain-checker
+sudo git pull
+sudo npm install
+sudo npm run build 
+sudo pm2 restart domain-checker
