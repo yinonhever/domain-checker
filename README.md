@@ -9,13 +9,3 @@ The system, built with Node.js and TypeScript, is made of several services:
 - **A MongoDB database**, integrated with the app using deeply-structured Mongoose models and schemas.
 
 The project is built in a scalable way that would make it easy to add more scheduled automations with different intervals, more API routes and any additional functionalities.
-
-## How to run
-
-To start the app using Docker, run this command:
-
-```bash
-docker compose up -d
-```
-
-The application will run on port 5000.
