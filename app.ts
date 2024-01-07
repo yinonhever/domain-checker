@@ -15,6 +15,9 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/domains", domainRoutes);
+app.use("/thing", (_, res) => {
+  res.json({ msg: "Some random response thing", data: new Date() });
+});
 
 /**
  * Connecting to the MongoDB database, starting the web server and scheduling
