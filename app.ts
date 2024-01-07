@@ -16,7 +16,7 @@ app.use(cors());
 
 app.use("/domains", domainRoutes);
 app.use("/thing", (_, res) => {
-  res.json({ msg: "Some random response thing", data: new Date() });
+  res.json({ msg: "Some random test response thing", date: new Date() });
 });
 
 /**
