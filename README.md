@@ -12,9 +12,11 @@ The project is built in a scalable way that would make it easy to add more sched
 
 ## How to run
 
-To start the app using, run these command:
+To start the app, run these command:
 
 ```bash
+git clone https://github.com/yinonhever/domain-checker.git
+cd domain-checker
 npm install
 npm run build
 npm start

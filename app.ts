@@ -25,7 +25,7 @@ const startServer = async () => {
   await mongoose.connect(process.env.MONGODB_URI as string);
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`, new Date());
-    console.log(`An extra random log`, new Date());
+    console.log(`An different extra log than before`, new Date());
   });
   scheduleAutomations();
 };
