@@ -19,7 +19,12 @@ app.use("/thing", (_, res) => {
   res.json({ msg: "Some random test response thing", date: new Date() });
 });
 app.use("/thingie", (_, res) => {
-  res.json({ msg: "Thing thong", date: new Date(), blah: Math.random() });
+  res.json({
+    msg: "Thing thong",
+    date: new Date(),
+    blah: Math.random(),
+    blooh: Math.random() + " " + new Date()
+  });
 });
 
 /**
