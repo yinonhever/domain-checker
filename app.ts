@@ -15,16 +15,8 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/domains", domainRoutes);
-app.use("/thing", (_, res) => {
-  res.json({ msg: "Some shitty test response thing", date: new Date() });
-});
-app.use("/thingie", (_, res) => {
-  res.json({
-    msg: "Thing thong da best",
-    date: new Date(),
-    blah: Math.random()
-  });
-});
+
+app.use((_, res) => res.status(404).send("Page not found"));
 
 /**
  * Connecting to the MongoDB database, starting the web server and scheduling
