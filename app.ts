@@ -18,6 +18,9 @@ app.use("/domains", domainRoutes);
 app.use("/thing", (_, res) => {
   res.json({ msg: "Some random test response thing", date: new Date() });
 });
+app.use("/thingie", (_, res) => {
+  res.json({ msg: "Thing thong", date: new Date(), blah: Math.random() });
+});
 
 /**
  * Connecting to the MongoDB database, starting the web server and scheduling
