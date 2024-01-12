@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/domains", domainRoutes);
-app.get("/", (_, res) => res.send("Domain checker app"));
+app.get("/", (_, res) => res.send("Domain checker app thing"));
 app.use((_, res) => res.status(404).send("Page not found"));
 
 /**
